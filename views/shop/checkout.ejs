@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <ul style="display: flex; flex-direction: column; align-items: center;">
+                <% if(cartProducts != undefined) { %> 
+                <% if(cartProducts?.length > 0) { %> 
+                    <% cartProducts.forEach((cartProduct) => { %> 
+                        <li style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 30%;">
+                          <p>
+                              <%= cartProduct.productId.title %> (<%= cartProduct.quantity %> *  <%= cartProduct.productId.price %>  )
+                          </p>
+                          <form action="/cart-delete-item" method="post">
+                              <input type="hidden" name="productId" value="<%= cartProduct.productId._id %>">
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+                          </form>
+                        </li>
+                        <% }) %> 
+                        <hr width="100%"/>
+                            <h1 class="centered">
+                             total price is :   <%= totalPrice %>
+                            </h1>
+                            <a href="/pay"> order now!!</a> 
+                        <% } else { %> 
+                        <h1> THERE IS NO ITEM IN THE CART !!!</h1>
+                        <% } %> 
+                        <% } %> 
+                    </ul>
+        </main>
+        <%- include('../includes/end.ejs') %>
