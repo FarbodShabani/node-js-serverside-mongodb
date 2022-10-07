@@ -23,7 +23,7 @@ const isAuth = require("./middleware/is-auth");
 
 const app = express();
 const store = new CMS({
-  uri: "mongodb+srv://farbodSaina:puma1998gh@cluster0.8xscres.mongodb.net/Auth",
+  uri: "",
   collection: "session",
 });
 const multerStorage = multer.diskStorage({
@@ -98,7 +98,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://saina:puma1999sh@cluster0.riyzl.mongodb.net/shop?retryWrites=true&w=majority"
+    ""
   )
   .then(() => app.listen("2828"))
   .catch((err) =>
